@@ -13,5 +13,22 @@ export function authGuard(to, from, next) {
         return;
     }
 
+    if (to.meta.role && token) {
+        try {
+            const user = JSON.parse(localStorage.getItem('auth_user') ?? 'null');
+            const hasRole = user?.roles?.some(r => r.name === to.meta.role) ?? false;
+
+            if (! hasRole) {
+                next({ name: 'home' });
+
+                return;
+            }
+        } catch {
+            next({ name: 'home' });
+
+            return;
+        }
+    }
+
     next();
 }
