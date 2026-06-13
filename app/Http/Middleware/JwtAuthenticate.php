@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
-class JwtAuth
+class JwtAuthenticate
 {
     public function handle(Request $request, Closure $next): Response
     {
